@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from "axios/index";
 import Message from './Message';
-import  styles from './style.css';
+import 'materialize-css/dist/css/materialize.min.css';
+
+
+ 
 
 
 class Chatbot extends Component {
@@ -64,18 +67,44 @@ class Chatbot extends Component {
         }
     };
 
+    
 
     render() {
         return (
-            <div style={{height: 400, width: 400, float: 'right'}}>
-                <div id="chatbot" style={{height: '100%', width: '100%', overflow: 'auto'}}>
-                    <h2>Chatbot</h2>
-                    {this.renderMessages(this.state.messages)}
-                    <input type="text"/>
-                </div>
+            <div className="card large z-depth-1">
+                    
+                        <div className="col s12 m8">
+                            <nav>
+                                <div class="nav-wrapper">
+                                <a href="#" class="brand-logo left">Chat</a>
+                                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                    
+                                </ul>
+                                </div>
+                            </nav>
+                            <div className="row">
+                            <div class="col s12 m8"><p>         </p></div>
+                            <div className="col s12 m8">
+                                {this.renderMessages(this.state.messages)}
+ 
+                            </div> 
+                            </div> 
+                            <footer class="page-footer">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col s12 m8">
+                                            <input type="text"/> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </footer> 
+                        </div>
             </div>
+          
+            
         );
     }
 }
 
 export default Chatbot; 
+
