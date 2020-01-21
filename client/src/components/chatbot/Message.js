@@ -3,7 +3,7 @@ import logo from './logo.jpg';
 
 const Message = (props) => {
     return (       
-        <div className="card medium z-depth-2">
+        
         <div className="col s12 m8 offset-m2 l6 offset-l3">
             
                     <div className="row valign-wrapper">
@@ -14,21 +14,25 @@ const Message = (props) => {
                                 </img>
                             </div>
                             }
+                            {props.speaks==='bot' &&
                             <div className="col s10">
-                                <span className="black-text">
-                                    {props.text}
-                                </span>
+                                <p class="flow-text">
+                                     {props.text}
+                                </p>
+                             
                             </div>
-
+                            }
                             {props.speaks==='user' &&
-                            <div className="col s2">
-                                <a href="/" className="btn-floating btn-large waves-effect waves-light red">{props.speaks}</a>
-                             </div>
+                            <div className="col s4">
+                            <p class="flow-text">
+                                     {props.text}
+                            </p>
+                        </div>
                             }
                     </div>
                 
         </div>   
-        </div>
+      
        
 
         
@@ -37,5 +41,3 @@ const Message = (props) => {
 };
 
 export default Message;
-
-

@@ -9,9 +9,19 @@ import Chatbot from './chatbot/Chatbot';
 const App = () => (
     <div>
        <BrowserRouter>
+       <div className="col s12 m8">
             <div className="container">
+            
+            <nav>
+                <div className="nav-wrapper">
+                    <a href="#" className="brand-logo left">Chat</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  
+                    </ul>
+                </div>
+            </nav>
                <Chatbot />
-               
+            </div>   
            </div>
        </BrowserRouter>
     </div>
