@@ -3,6 +3,7 @@ import axios from "axios/index";
 import Message from './Message';
 import Cookies from 'universal-cookie';
 import {v4 as uuid} from 'uuid';
+import Cards from './Card';
 const cookies = new Cookies();
 
 class Chatbot extends Component {
@@ -64,29 +65,38 @@ class Chatbot extends Component {
         
     }
 
-
-
-
     componentDidMount() {
         this.df_event_query('Welcome');
         this.imputTxt.focus();
     }
+
+    renderCards(cards){
+        return cards.map((cards, i) => <Cards key={i} payload ={cards.structValue}/>);
+
+    }
+
+    renderOneMessages(message, i) {
+        if (message.msg && message.msg.text && message.msg.text.text){
+            return <Message key={i} speaks={message.speaks} text={message.msg.text.text}/>;
+        } else if (message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.cards) {
+             return   <div key={i}>
+                    <div className = "card panel grey lighten-5 z-depth-1">
+                        {this.renderCards(message.msg.payload.fields.cards.listValue.values)}
+                    </div> 
+
+                </div>;
+        }
+    }
+
+
     renderMessages(returnedMessages) {
         if (returnedMessages) {
             return returnedMessages.map((message, i) => {
-                
-                if (message.msg && message.msg.text && message.msg.text.text){
-                    return <Message key={i} speaks={message.speaks} text={message.msg.text.text}/>;
-                } else {
-                        return null;
-                }
+                return (this.renderOneMessages(message,i));
                     
                 }
             );
         }
-           
-            
-    
     }
     
 
@@ -108,7 +118,8 @@ class Chatbot extends Component {
 
     render() {
         return (
-            <div className="col s12">
+ 
+                <div className="col s10">
                 <div className="card large">
                         <div id="chatbot" style={{height: '100%', width: '100%', overflow: 'auto'}}>
                             <h2>               </h2>
@@ -127,6 +138,8 @@ class Chatbot extends Component {
                 </div>
                 
             </div>
+      
+            
         );
     }
 }
